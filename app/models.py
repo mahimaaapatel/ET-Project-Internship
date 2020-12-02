@@ -27,16 +27,6 @@ class Application(models.Model):
 
 class Resume(models.Model):
     user = models.ForeignKey('CustomUser', on_delete=models.CASCADE, verbose_name='User')
-    collegename = models.CharField(max_length=100, verbose_name='College Name')
-    gpa = models.CharField(max_length=10, verbose_name='GPA')
-    internship1 = models.CharField(max_length=100, verbose_name='Internship 1', blank=True, null=True)
-    internship2 = models.CharField(max_length=100, verbose_name='Internship 2', blank=True, null=True)
-    internship3 = models.CharField(max_length=100, verbose_name='Internship 3', blank=True, null=True)
-    project1 = models.CharField(max_length=100, verbose_name='Project 1', blank=True, null=True)
-    project2 = models.CharField(max_length=100, verbose_name='Project 2', blank=True, null=True)
-    project3 = models.CharField(max_length=100, verbose_name='Project 3', blank=True, null=True)
-    skill1 = models.CharField(max_length=100, verbose_name='Skill 1', blank=True, null=True)
-    skill2 = models.CharField(max_length=100, verbose_name='Skill 2', blank=True, null=True)
-    skill3 = models.CharField(max_length=100, verbose_name='Skill 3', blank=True, null=True)
+    resume = models.FileField(upload_to='Resume', verbose_name='Resume')
     def __str__(self):
         return self.user.name
