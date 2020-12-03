@@ -23,3 +23,6 @@ def signIn(request):
                 comblist = zip(cname, stipend, field, duration, location)
                 return render(request, "home.html", {'comblist':comblist})
     return render(request,"signIn.html")
+
+def application(request):
+    return render(request,"application.html")
