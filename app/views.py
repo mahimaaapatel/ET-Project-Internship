@@ -7,6 +7,7 @@ def signIn(request):
         password = request.POST.get('pass')
         if models.CustomUser.objects.filter(email=email).exists():
             user = models.CustomUser.objects.get(email=email)
+            request.session['email'] = email
             cname = []
             stipend = []
             field = []
@@ -24,5 +25,20 @@ def signIn(request):
                 return render(request, "home.html", {'comblist':comblist})
     return render(request,"signIn.html")
 
+def logout(request):
+    try:
+        del request.session['email']
+    except:
+      pass
+    return render(request,"signIn.html")
+
 def application(request):
+    if request.method=='POST':
+        cname = request.POST.get('cname')
+        q1 = request.POST.get('q1')
+        q2 = request.POST.get('q2')
+        q3 = request.POST.get('q3')
+        if models.Company.objects.filter(name=cname).exists():
+            models.Application.objects.create(company=models.Company.objects.get(name=cname), user=models.CustomUser.objects.get(email=request.session['email']),
+            q1=q1, q2=q2, q3=q3)
     return render(request,"application.html")

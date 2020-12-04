@@ -18,7 +18,7 @@ class Company(models.Model):
 
 class Application(models.Model):
     company = models.ForeignKey('Company', on_delete=models.CASCADE, verbose_name='Company')
-    user = models.ForeignKey('CustomUser', on_delete=models.CASCADE, verbose_name='User')
+    user = models.ForeignKey('CustomUser', on_delete=models.CASCADE, verbose_name='User', null=True, blank=True)
     q1 = models.TextField(verbose_name='Question 1')
     q2 = models.TextField(verbose_name='Question 2')
     q3 = models.TextField(verbose_name='Question 3')
